@@ -1,6 +1,8 @@
 package uce.edu.web.api.matricula.application;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.TransactionScoped;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -14,7 +16,44 @@ public class EstudianteService {
     @Inject
     private EstudianteRepository estudianteRepository;
 
-    public List<Estudiante> listarTodos(){
+    public List<Estudiante> listarTodos() {
         return this.estudianteRepository.listAll();
+    }
+
+    public Estudiante ConsultarPorId(Integer id) {
+        return this.estudianteRepository.findById(id.longValue());
+
+    }
+
+    @Transactional
+    public void crear(Estudiante estu) {
+        this.estudianteRepository.persist(estu);
+    }
+
+    @Transactional
+    public void actualizar(Integer id, Estudiante est) {
+        Estudiante estu = this.ConsultarPorId(id);
+        estu.apellido = est.apellido;
+        estu.nombre = est.nombre;
+        estu.fechaNacimiento = est.fechaNacimiento;
+        // Se actualiza automaticamente por dirty checking
+    }
+    @Transactional
+    public void actualizarParcial(Integer id, Estudiante est) {
+        Estudiante estu = this.ConsultarPorId(id);
+        if (est.nombre != null) {
+            estu.nombre = est.nombre;
+        }
+        if (est.apellido != null) {
+            estu.apellido = est.apellido;
+        }
+        if (est.fechaNacimiento != null) {
+            estu.fechaNacimiento = est.fechaNacimiento;
+        }
+    }
+    // Se actualiza automaticamente por dirty checking
+    @Transactional
+    public void eliminar(Integer id){
+        this.estudianteRepository.deleteById(id.longValue());
     }
 }
