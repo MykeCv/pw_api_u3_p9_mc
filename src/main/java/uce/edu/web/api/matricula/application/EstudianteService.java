@@ -1,7 +1,6 @@
 package uce.edu.web.api.matricula.application;
 
 import jakarta.inject.Inject;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
