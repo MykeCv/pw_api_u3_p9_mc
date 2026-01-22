@@ -20,44 +20,44 @@ public class MateriaResource {
     private MateriaService materiaService;
 
     @GET
-    @Path("/todas")
+    @Path("")
     public List<Materia> obtenerTodas() {
         return materiaService.listarTodas();
     }
 
     @POST
-    @Path("/crear")
+    @Path("")
     public void crear(Materia materia) {
         materiaService.crear(materia);
     }
 
     @GET
-    @Path("/consultarPorId/{id}")
+    @Path("/{id}")
     public Materia consultarPorId(@PathParam("id") Integer id) {
         return materiaService.consultarPorId(id);
     }
 
     @GET
-    @Path("/porNivel/{nivel}")
+    @Path("/nivel/{nivel}")
     public List<Materia> listarPorNivel(@PathParam("nivel") String nivel) {
         return materiaService.listarPorNivel(nivel);
     }
 
     @GET
-    @Path("/porNombre/{nombre}")
+    @Path("/nombre/{nombre}")
     public Materia buscarPorNombre(@PathParam("nombre") String nombre) {
         return materiaService.buscarPorNombre(nombre);
     }
     
     @PUT
-    @Path("/actualizar/{id}")
+    @Path("/{id}")
     public void actualizar(@PathParam("id") Integer id, Materia materia) {
         materiaService.actualizar(id, materia);
     }
 
 
     @PATCH
-    @Path("/actualizar/{id}/{creditos}")
+    @Path("/{id}/{creditos}")
     public void actualizarCreditos(
             @PathParam("id") Integer id,
             @PathParam("creditos") Integer creditos) {
@@ -65,7 +65,7 @@ public class MateriaResource {
     }
 
     @DELETE
-    @Path("/borrar/{id}")
+    @Path("/{id}")
     public void borrar(@PathParam("id") Integer id) {
         materiaService.eliminar(id);
     }

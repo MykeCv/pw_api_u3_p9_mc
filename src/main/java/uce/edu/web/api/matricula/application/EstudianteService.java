@@ -60,6 +60,5 @@ public class EstudianteService {
         //return this.estudianteRepository.find("provincia", provincia).list();
         return this.estudianteRepository.find("provincia =?1 and genero = ?2", provincia, genero).list();
     }
-
-
+    
 }
