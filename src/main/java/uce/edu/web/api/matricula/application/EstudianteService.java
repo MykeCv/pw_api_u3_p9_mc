@@ -1,12 +1,11 @@
 package uce.edu.web.api.matricula.application;
 
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import uce.edu.web.api.matricula.application.representation.EstudianteRepresentation;
 import uce.edu.web.api.matricula.domain.Estudiante;
 import uce.edu.web.api.matricula.infraestructure.EstudianteRepository;
@@ -44,7 +43,7 @@ public class EstudianteService {
         // Se actualiza automaticamente por dirty checking
     }
     @Transactional
-    public void actualizarParcial(Integer id, Estudiante est) {
+    public void actualizarParcial(Integer id, EstudianteRepresentation est) {
         Estudiante estu = this.mapperToEstudiante(this.ConsultarPorId(id));
         if (est.nombre != null) {
             estu.nombre = est.nombre;
