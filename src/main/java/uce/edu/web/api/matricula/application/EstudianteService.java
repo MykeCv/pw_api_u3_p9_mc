@@ -36,23 +36,24 @@ public class EstudianteService {
 
     @Transactional
     public void actualizar(Integer id, EstudianteRepresentation est) {
-        Estudiante estu = this.mapperToEstudiante(this.ConsultarPorId(id));
-        estu.apellido = est.apellido;
-        estu.nombre = est.nombre;
-        estu.fechaNacimiento = est.fechaNacimiento;
-        // Se actualiza automaticamente por dirty checking
+        Estudiante entity = estudianteRepository.findById(id.longValue());
+           if (entity != null) {
+            entity.nombre = est.nombre;
+            entity.apellido = est.apellido;
+            entity.fechaNacimiento = est.fechaNacimiento;
+            entity.genero = est.genero;
+            entity.provincia = est.provincia;
+        }
     }
     @Transactional
     public void actualizarParcial(Integer id, EstudianteRepresentation est) {
-        Estudiante estu = this.mapperToEstudiante(this.ConsultarPorId(id));
-        if (est.nombre != null) {
-            estu.nombre = est.nombre;
-        }
-        if (est.apellido != null) {
-            estu.apellido = est.apellido;
-        }
-        if (est.fechaNacimiento != null) {
-            estu.fechaNacimiento = est.fechaNacimiento;
+        Estudiante entity = estudianteRepository.findById(id.longValue());
+        if (entity != null) {
+        if (entity.nombre != null) entity.nombre = est.nombre;
+        if (entity.apellido != null) entity.apellido = est.apellido;
+        if (entity.fechaNacimiento != null) entity.fechaNacimiento = est.fechaNacimiento;
+        if (entity.genero != null) entity.genero = est.genero;
+        if (entity.provincia != null) entity.provincia = est.provincia;
         }
     }
     // Se actualiza automaticamente por dirty checking
