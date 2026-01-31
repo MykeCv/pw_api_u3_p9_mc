@@ -49,11 +49,11 @@ public class EstudianteService {
     public void actualizarParcial(Integer id, EstudianteRepresentation est) {
         Estudiante entity = estudianteRepository.findById(id.longValue());
         if (entity != null) {
-        if (entity.nombre != null) entity.nombre = est.nombre;
-        if (entity.apellido != null) entity.apellido = est.apellido;
-        if (entity.fechaNacimiento != null) entity.fechaNacimiento = est.fechaNacimiento;
-        if (entity.genero != null) entity.genero = est.genero;
-        if (entity.provincia != null) entity.provincia = est.provincia;
+            if (est.nombre != null) entity.nombre = est.nombre;
+            if (est.apellido != null) entity.apellido = est.apellido;
+            if (est.fechaNacimiento != null) entity.fechaNacimiento = est.fechaNacimiento;
+            if (est.genero != null) entity.genero = est.genero;
+            if (est.provincia != null) entity.provincia = est.provincia;
         }
     }
     // Se actualiza automaticamente por dirty checking
